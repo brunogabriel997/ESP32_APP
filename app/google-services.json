@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "1085913250506",
+    "firebase_url": "https://projeto-1-ersc-default-rtdb.firebaseio.com",
+    "project_id": "projeto-1-ersc",
+    "storage_bucket": "projeto-1-ersc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085913250506:android:63a2964df8b1e90f5e5233",
+        "android_client_info": {
+          "package_name": "com.example.esp32_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085913250506-cgggo237651i25cn9ose8jpdr5ctse0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7NE3uptP9twc1ACqv9Thw6683QPgV9-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085913250506-cgggo237651i25cn9ose8jpdr5ctse0i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085913250506:android:805ac8fa4dcf73db5e5233",
+        "android_client_info": {
+          "package_name": "ipvc.estg.esp32_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085913250506-cgggo237651i25cn9ose8jpdr5ctse0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7NE3uptP9twc1ACqv9Thw6683QPgV9-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085913250506-cgggo237651i25cn9ose8jpdr5ctse0i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1085913250506:android:1719a18af74c12735e5233",
+        "android_client_info": {
+          "package_name": "ipvc.estg.teste1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1085913250506-cgggo237651i25cn9ose8jpdr5ctse0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7NE3uptP9twc1ACqv9Thw6683QPgV9-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1085913250506-cgggo237651i25cn9ose8jpdr5ctse0i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
