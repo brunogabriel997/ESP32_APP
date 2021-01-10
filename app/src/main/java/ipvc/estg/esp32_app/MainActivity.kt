@@ -80,23 +80,24 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val button = findViewById<Button>(R.id.botao)
-        button.setOnClickListener {
+        val button_atual = findViewById<Button>(R.id.botao)
+        button_atual.setOnClickListener {
             val dataFormatada = formataData_mes.format(data)
             //System.out.println("Data formatada " + dataFormatada );
             //Toast.makeText(this@MainActivity, "Data formatada " + dataFormatada_ano, Toast.LENGTH_LONG).show()
             basicReadWrite(dataFormatada_hora, dataFormatada_dia.toInt(), dataFormatada_ano.toInt())
+
+
         }
 
 
     }
 
 
-    fun basicReadWrite(dataFormatada_hora: String, dataFormatada_dia: Int, dataFormatada_ano: Int) {
+    fun basicReadWrite(dataFormatada_hora: String, dataFormatada_dia: Int, dataFormatada_ano: Int){
         // [START write_message]
         // Write a message to the database
         val myRef = FirebaseDatabase.getInstance().getReference()
-
 
         // [START read_message]
         // Read from the database
@@ -106,8 +107,13 @@ class MainActivity : AppCompatActivity() {
                 // whenever data at this location is updated.
                 val value =
                     dataSnapshot.child("ESP32_Version1/"+ dataFormatada_ano +"/janeiro/dia_"+dataFormatada_dia+"/" + dataFormatada_hora + "h").value.toString()
-                Log.d(TAG, "Value is: $value")
-                Toast.makeText(this@MainActivity, value, Toast.LENGTH_LONG).show()
+
+                val value2 =
+                    dataSnapshot.child("ESP32_Version1/"+ dataFormatada_ano +"/janeiro/dia_"+dataFormatada_dia+"/18h").value.toString()
+
+                Log.d(TAG, "Value1 is: $value")
+                Log.d(TAG, "Value2 is: $value2")
+                Toast.makeText(this@MainActivity, value, Toast.LENGTH_SHORT).show()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -115,5 +121,6 @@ class MainActivity : AppCompatActivity() {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
+
     }
 }
