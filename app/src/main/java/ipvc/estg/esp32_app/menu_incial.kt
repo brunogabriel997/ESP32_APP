@@ -12,6 +12,7 @@ import android.widget.Toast
 
 class menu_incial : AppCompatActivity() {
 
+
     private var itemList = arrayOf("Item 1", "Item 2", "Item 3" )
 
     private var listView:ListView ? = null

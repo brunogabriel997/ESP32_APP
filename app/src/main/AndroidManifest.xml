@@ -8,21 +8,26 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="DASHBOARD IPVC"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ESP32_APP">
-        <activity android:name=".menu_incial">
+        <activity
+            android:name=".Planta1"
+            android:label="@string/title_activity_planta1"
+            android:theme="@style/Theme.ESP32_APP.NoActionBar"></activity>
+        <activity
+            android:name=".menuactivity"
+            android:label="@string/title_activity_menuactivity"
+            android:theme="@style/Theme.ESP32_APP.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".menu_incial"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
