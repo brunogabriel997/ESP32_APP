@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFECEC">
+
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtVw"
+        android:layout_marginLeft="-389dp"
+        android:layout_marginBottom="6dp"
+        android:layout_toRightOf="@+id/txtVw" />
+
+    <TextView
+        android:id="@+id/txtVw"
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="150dp"
+        android:background="@color/white"
+        android:text="  Biblioteca"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtVw"
+        android:layout_marginLeft="-388dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginBottom="-69dp"
+        android:layout_toRightOf="@+id/txtVw" />
+
+    <TextView
+        android:id="@+id/txtV2"
+        android:layout_width="334dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="220dp"
+        android:background="@color/white"
+        android:text="  Pavilhao Principal"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+
+
+</RelativeLayout>
