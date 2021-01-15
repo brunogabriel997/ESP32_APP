@@ -3,11 +3,8 @@ package ipvc.estg.esp32_app
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
+import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -18,12 +15,18 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
     var floors2 =
             arrayOf(" ", "1 Andar", "2 Andar")
 
+    var floors3 =
+            arrayOf(" ", "1 Andar", "2 Andar")
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_menuactivity)
+        setContentView(R.layout.begininterface)
         //setSupportActionBar(findViewById(R.id.toolbar))
+
+
+        findViewById<Button>(R.id.angry_btn).setOnClickListener { view ->
+            setContentView(R.layout.activity_menuactivity)
+
 
         val spin = findViewById<View>(R.id.spinner1) as Spinner
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, floors)
@@ -38,6 +41,19 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
         spin2.adapter = adapter2
         spin2.onItemSelectedListener = this
 
+
+        val spin3 = findViewById<View>(R.id.spinner3) as Spinner
+        val adapter3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, floors3)
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spin3.adapter = adapter3
+        spin3.onItemSelectedListener = this
+
+            findViewById<Button>(R.id.button2).setOnClickListener { view ->
+                val intent = Intent(this@menuactivity, menuactivity::class.java)
+                startActivity(intent)
+            }
+
+        }
     }
 
     override fun onItemSelected(arg0: AdapterView<*>?, arg1: View, position: Int, id: Long) {

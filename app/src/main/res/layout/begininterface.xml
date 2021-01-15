@@ -1,57 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EFECEC"
+    android:background="@drawable/gradient"
+    android:fadingEdge="none"
     android:orientation="vertical">
 
+
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:src="@drawable/estg_logo"
-        android:layout_gravity="center"
-        android:layout_marginTop="60dp"/>
+        android:id="@+id/imageView"
+        android:layout_width="60dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="84dp"
+        android:baselineAligned="false"
+        android:src="@drawable/imagem1"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.798"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:fontFamily="casual"
+        android:id="@+id/textView"
+        android:layout_width="414dp"
+        android:layout_height="359dp"
+        android:fontFamily="@font/bungee_shade"
+        android:gravity="center_horizontal"
+        android:rotation="-7"
         android:text="MONITORING"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#000000"
-        android:textSize="50dp" />
+        android:textSize="90dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:fontFamily="cursive"
+        android:layout_width="286dp"
+        android:layout_height="106dp"
+        android:fontFamily="@font/anonymous_pro_bold"
+        android:gravity="center_horizontal"
         android:text="Detection and quantification of human presence in indoor environments"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:textColor="#000000"
-        android:textSize="20dp" />
+        android:textColor="#050505"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/angry_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.949" />
 
     <Button
         android:id="@+id/angry_btn"
-        android:layout_width="150dp"
-        android:layout_height="47dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/buttonshape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
 
+        android:background="@drawable/buttonshape"
+        android:fontFamily="@font/anonymous_pro"
         android:shadowRadius="5"
         android:text="Entrar"
         android:textColor="#000000"
         android:textSize="20sp"
         android:typeface="monospace"
         app:backgroundTint="#EFECEC"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:rippleColor="#EFECEC" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="140dp"
+        android:layout_height="29dp"
+        android:src="@drawable/estg_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.973" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

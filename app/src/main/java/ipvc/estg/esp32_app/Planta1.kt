@@ -20,6 +20,10 @@ class Planta1 : AppCompatActivity() {
             startActivity(intent)
         }
 
+        findViewById<Button>(R.id.button2).setOnClickListener { view ->
+            val intent = Intent(this@Planta1, menuactivity::class.java)
+            startActivity(intent)
+        }
 
 
 
