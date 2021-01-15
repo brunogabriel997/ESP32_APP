@@ -19,10 +19,11 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
             arrayOf(" ", "1 Andar", "2 Andar")
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menuactivity)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        //setSupportActionBar(findViewById(R.id.toolbar))
 
         val spin = findViewById<View>(R.id.spinner1) as Spinner
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, floors)

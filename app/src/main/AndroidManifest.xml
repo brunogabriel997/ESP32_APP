@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ESP32_APP">
         <activity
+            android:name=".dvsvs"
+            android:label="@string/title_activity_dvsvs"
+            android:theme="@style/Theme.ESP32_APP.NoActionBar"></activity>
+        <activity
             android:name=".Planta1"
             android:label="@string/title_activity_planta1"
-            android:theme="@style/Theme.ESP32_APP.NoActionBar"></activity>
+            android:theme="@style/Theme.ESP32_APP.NoActionBar" />
         <activity
             android:name=".menuactivity"
             android:label="@string/title_activity_menuactivity"
@@ -26,7 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".menu_incial"></activity>
+        <activity android:name=".menu_incial" />
         <activity android:name=".MainActivity" />
     </application>
 

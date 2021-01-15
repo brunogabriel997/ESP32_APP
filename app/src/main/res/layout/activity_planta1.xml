@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Planta1">
 
-    <com.google.android.material.appbar.AppBarLayout
+
+    <ImageView
+        android:id="@+id/imageView1"
         android:layout_width="match_parent"
+        android:layout_height="578dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/planta" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="38dp"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.ESP32_APP.AppBarOverlay">
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="350dp"
+        app:backgroundTint="#EF0B0B"
+        app:cornerRadius="1000dp" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.ESP32_APP.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+</RelativeLayout>
 
 
 
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
