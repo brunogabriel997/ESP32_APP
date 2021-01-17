@@ -16,7 +16,7 @@ class Planta1 : AppCompatActivity() {
         //setSupportActionBar(findViewById(R.id.toolbar))
 
         findViewById<Button>(R.id.button).setOnClickListener { view ->
-            val intent = Intent(this@Planta1, MainActivity::class.java)
+            val intent = Intent(this@Planta1, Chart::class.java)
             startActivity(intent)
         }
 

@@ -10,13 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 
 class menuactivity : AppCompatActivity(), OnItemSelectedListener {
     var floors =
-        arrayOf(" ","1 Andar", "2 Andar", "3 Andar")
+        arrayOf("","1 Andar", "2 Andar", "3 Andar")
 
     var floors2 =
-            arrayOf(" ", "1 Andar", "2 Andar")
+            arrayOf("","1 Andar", "2 Andar")
 
     var floors3 =
-            arrayOf(" ", "1 Andar", "2 Andar")
+            arrayOf("", "1 Andar", "2 Andar")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,21 +30,21 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
 
         val spin = findViewById<View>(R.id.spinner1) as Spinner
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, floors)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown)
         spin.adapter = adapter
         spin.onItemSelectedListener = this
 
 
         val spin2 = findViewById<View>(R.id.spinner2) as Spinner
         val adapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, floors2)
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter2.setDropDownViewResource(R.layout.spinner_dropdown)
         spin2.adapter = adapter2
         spin2.onItemSelectedListener = this
 
 
         val spin3 = findViewById<View>(R.id.spinner3) as Spinner
         val adapter3 = ArrayAdapter(this, android.R.layout.simple_spinner_item, floors3)
-        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        adapter3.setDropDownViewResource(R.layout.spinner_dropdown)
         spin3.adapter = adapter3
         spin3.onItemSelectedListener = this
 
