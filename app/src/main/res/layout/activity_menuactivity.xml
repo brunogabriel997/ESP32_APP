@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient">
 
-
     <Spinner
         android:id="@+id/spinner1"
         android:layout_width="349dp"
@@ -78,7 +77,7 @@
         android:text="  Departamento Design"
         android:textColor="@color/black"
         android:textSize="25dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/button2"

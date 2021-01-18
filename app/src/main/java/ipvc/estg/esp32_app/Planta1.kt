@@ -24,8 +24,5 @@ class Planta1 : AppCompatActivity() {
             val intent = Intent(this@Planta1, menuactivity::class.java)
             startActivity(intent)
         }
-
-
-
     }
 }
