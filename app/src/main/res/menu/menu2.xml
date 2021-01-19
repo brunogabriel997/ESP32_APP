@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <item
+        android:id="@+id/dia"
+        android:title="Dia"
+        app:showAsAction="never">
+    </item>
+    <item
+        android:id="@+id/mes"
+        android:title="Mês"
+        app:showAsAction="never">
+    </item>
+
+    <item
+        android:id="@+id/ano"
+        android:title="Ano"
+        app:showAsAction="never">
+    </item>
+
+</menu>

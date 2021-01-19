@@ -1,6 +1,7 @@
 package ipvc.estg.esp32_app
 
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -28,6 +29,7 @@ import java.util.*
 class BarChartActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "KotlinActivity"
+        var data_grafico = 1
     }
 
 
@@ -36,29 +38,22 @@ class BarChartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_bar_chart)
 
 
-        //val barChart = findViewById<View>(R.id.barchart) as BarChart
+        // Use the current date as the default date in the picker
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val hour = c.get(Calendar.HOUR_OF_DAY)
 
-        // data atual
-        val formataData_ano = SimpleDateFormat("yyyy")
-        val formataData_mes = SimpleDateFormat("MM")
-        val formataData_dia = SimpleDateFormat("dd")
-        // hora atual
-        val formataData_hora = SimpleDateFormat("HH")
+        // Toast.makeText(this@PieChartActivity, "Data formatada " + day + " "+ month + " " + year , Toast.LENGTH_LONG).show()
 
-        val data = Date()
-        val dataFormatada_hora = formataData_hora.format(data)
-        val dataFormatada_dia = formataData_dia.format(data)
-        val dataFormatada_mes = formataData_mes.format(data)
-        val dataFormatada_ano = formataData_ano.format(data)
-
-
-        basicReadWrite(dataFormatada_hora, dataFormatada_dia.toInt(), dataFormatada_ano.toInt())
+        basicReadWrite(hour, day, month, year)
 
 
     }
 
 
-    fun basicReadWrite(dataFormatada_hora: String, dataFormatada_dia: Int, dataFormatada_ano: Int){
+    fun basicReadWrite(hora: Int, dia: Int,mes: Int, ano: Int){
         // [START write_message]
         // Write a message to the database
         val myRef = FirebaseDatabase.getInstance().getReference()
@@ -77,52 +72,155 @@ class BarChartActivity : AppCompatActivity() {
                 */
 
 
-                var aux = 0
-                var total = 0
+
                 val entries: ArrayList<BarEntry> = ArrayList()      // Entradas dos valores para a Bar Chart
-                for (i in 0..23) {
 
-                    // Recebe os valores da Firebase ///////////////////////////////////////////////
-                    val esquerda =
-                            dataSnapshot.child("ESP32_Version1/"+ dataFormatada_ano +"/janeiro/dia_"+ dataFormatada_dia + "/"+ i + "h/esquerda").value.toString()
-                    val direita =
-                            dataSnapshot.child("ESP32_Version1/"+ dataFormatada_ano +"/janeiro/dia_"+ dataFormatada_dia + "/"+ i + "h/direita").value.toString()
-                    ////////////////////////////////////////////////////////////////////////////////
 
-                    // Soma os valores de pessoas que passarm em cada hora (descriminando o sentido)///
-                    if(esquerda != "null") {
-                        aux = esquerda.toInt()
+
+                if(data_grafico == 1) {
+                    var aux = 0
+                    var total = 0
+                    for (i in 0..23) {
+
+                        // Recebe os valores da Firebase ///////////////////////////////////////////////
+                        val esquerda =
+                            dataSnapshot.child("ESP32_Version1/" + ano + "/"+meses_ano(mes)+"/dia_" + dia + "/" + i + "h/esquerda").value.toString()
+                        val direita =
+                            dataSnapshot.child("ESP32_Version1/" + ano + "/"+meses_ano(mes)+"/dia_" + dia + "/" + i + "h/direita").value.toString()
+                        ////////////////////////////////////////////////////////////////////////////////
+
+                        // Soma os valores de pessoas que passarm em cada hora (descriminando o sentido)///
+                        if (esquerda != "null") {
+                            aux = esquerda.toInt()
+                        } else {
+                            aux = 0
+                        }
+
+                        if (direita != "null") {
+                            total = direita.toInt() + aux
+                        } else {
+                            total = 0 + aux
+
+                        }
+                        ///////////////////////////////////////////////////////////////////////////////////
+
+                        entries.add(BarEntry(i.toFloat(), total.toFloat()))     // Adiciona o valor na Bar Chart
+
+
                     }
-                    else {
-                        aux = 0
+
+                    val barDataSet = BarDataSet(entries, " -> Pessoas")
+                    barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)    // Fornece as barras cores aleatorias
+                    barDataSet.setValueTextColor(Color.BLACK)               // O texto é escrito em preto
+                    barDataSet.setValueTextSize(10f)
+
+                    val barData = BarData(barDataSet)
+
+                    barChart.setFitBars(true)
+                    barChart.setData(barData)
+                    barChart.getDescription().setText("Horas / Nº Pessoas");
+                    barChart.animateY(0)
+                }
+
+
+
+
+                if(data_grafico == 2){
+                var aux_esquerda = 0
+                var aux_direita = 0
+                var total = 0
+                for(j in 1..31){
+                    for (i in 0..23) {
+
+                        // Recebe os valores da Firebase ///////////////////////////////////////////////
+                        val esquerda =
+                            dataSnapshot.child("ESP32_Version1/" + ano + "/" + meses_ano(mes)+ "/dia_" + j + "/" + i + "h/esquerda").value.toString()
+                        val direita =
+                            dataSnapshot.child("ESP32_Version1/" + ano + "/" + meses_ano(mes) + "/dia" + j + "/" + i + "h/direita").value.toString()
+                        ////////////////////////////////////////////////////////////////////////////////
+
+                        // Soma os valores de pessoas que passarm em cada hora (descriminando o sentido)///
+                        if (esquerda != "null") {
+                            aux_esquerda += esquerda.toInt()
+                        }
+
+                        if (direita != "null") {
+                            aux_direita += direita.toInt()
+                        }
+                        ///////////////////////////////////////////////////////////////////////////////////
+
+                     }
+                    total = aux_direita + aux_esquerda
+                    entries.add(BarEntry(j.toFloat(), total.toFloat()))     // Adiciona o valor na Bar Chart
+                    aux_direita = 0
+                    aux_esquerda = 0
+
                     }
 
-                    if (direita != "null") {
-                        total = direita.toInt() + aux
-                    }
-                    else {
-                        total = 0 + aux
+                    val barDataSet = BarDataSet(entries, " -> Pessoas")
+                    barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)    // Fornece as barras cores aleatorias
+                    barDataSet.setValueTextColor(Color.BLACK)               // O texto é escrito em preto
+                    barDataSet.setValueTextSize(10f)
 
-                    }
-                    ///////////////////////////////////////////////////////////////////////////////////
+                    val barData = BarData(barDataSet)
 
-                    entries.add(BarEntry(i.toFloat(), total.toFloat()))     // Adiciona o valor na Bar Chart
-
+                    barChart.setFitBars(true)
+                    barChart.setData(barData)
+                    barChart.getDescription().setText("Dia / Nº Pessoas");
+                    barChart.animateY(0)
 
                 }
 
-                val barDataSet = BarDataSet(entries, " -> Pessoas")
-                barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)    // Fornece as barras cores aleatorias
-                barDataSet.setValueTextColor(Color.BLACK)               // O texto é escrito em preto
-                barDataSet.setValueTextSize(10f)
 
-                val barData = BarData(barDataSet)
+                if(data_grafico == 3)
+                {
+                    var aux_esquerda = 0
+                    var aux_direita = 0
+                    var total = 0
+                    for (k in 0..11) {
+                        for (j in 1..31) {
+                            for (i in 0..23) {
 
-                barChart.setFitBars(true)
-                barChart.setData(barData)
-                barChart.getDescription().setText("Número de Pessoas");
-                barChart.animateY(0)
+                                // Recebe os valores da Firebase ///////////////////////////////////////////////
+                                val esquerda =
+                                    dataSnapshot.child("ESP32_Version1/" + ano + "/"+meses_ano(k)+"/dia_" + j + "/" + i + "h/esquerda").value.toString()
+                                val direita =
+                                    dataSnapshot.child("ESP32_Version1/" + ano + "/"+meses_ano(k)+"/dia_" + j + "/" + i + "h/direita").value.toString()
+                                ////////////////////////////////////////////////////////////////////////////////
 
+                                // Soma os valores de pessoas que passarm em cada hora (descriminando o sentido)///
+                                if (esquerda != "null") {
+                                    aux_esquerda += esquerda.toInt()
+                                }
+
+                                if (direita != "null") {
+                                    aux_direita += direita.toInt()
+                                }
+                                ///////////////////////////////////////////////////////////////////////////////////
+
+                            }
+                        }
+                        total = aux_direita + aux_esquerda
+                        entries.add(BarEntry(k.toFloat(), total.toFloat()))     // Adiciona o valor na Bar Chart
+                        aux_direita = 0
+                        aux_esquerda = 0
+                    }
+
+                        val barDataSet = BarDataSet(entries, " -> Pessoas")
+                        barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)    // Fornece as barras cores aleatorias
+                        barDataSet.setValueTextColor(Color.BLACK)               // O texto é escrito em preto
+                        barDataSet.setValueTextSize(10f)
+
+                        val barData = BarData(barDataSet)
+
+                        barChart.setFitBars(true)
+                        barChart.setData(barData)
+                        barChart.getDescription().setText("Meses / Nº Pessoas");
+                        barChart.animateY(0)
+
+
+
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -135,7 +233,7 @@ class BarChartActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu, menu)
+        inflater.inflate(R.menu.menu2, menu)
         return true
     }
 
@@ -145,20 +243,26 @@ class BarChartActivity : AppCompatActivity() {
 
 
             R.id.dia -> {
-
-
+                data_grafico = 1
+                val intent = Intent(this@BarChartActivity, BarChartActivity::class.java)
+                finish()
+                startActivity(intent)
                 true
             }
 
             R.id.mes -> {
-
-
+                data_grafico = 2
+                val intent = Intent(this@BarChartActivity, BarChartActivity::class.java)
+                finish()
+                startActivity(intent)
                 true
             }
 
             R.id.ano -> {
-
-
+                data_grafico = 3
+                val intent = Intent(this@BarChartActivity, BarChartActivity::class.java)
+                finish()
+                startActivity(intent)
                 true
             }
 
@@ -167,5 +271,31 @@ class BarChartActivity : AppCompatActivity() {
 
 
     }
+
+
+    fun meses_ano(meses: Int): String
+    {
+        if (meses == 0) return  "janeiro"
+        if (meses == 1) return  "fevereiro"
+        if (meses == 2) return  "março"
+        if (meses == 3) return  "abril"
+        if (meses == 4) return  "maio"
+        if (meses == 5) return  "junho"
+        if (meses == 6) return  "julho"
+        if (meses == 7) return  "agosto"
+        if (meses == 8) return  "setembro"
+        if (meses == 9) return  "outubro"
+        if (meses == 10) return  "novembro"
+        if (meses == 11) return  "dezembro"
+        else return "null"
+
+    }
+
+
+
+
+
+
+
 
 }

@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/enter_pie_chart"
         android:layout_margin="10dp"
+        android:background="@drawable/buttonshape"
         android:text="@string/bar_chart" />
 
     <Button
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:background="@drawable/buttonshape"
         android:text="@string/pie_chart"/>
 
 

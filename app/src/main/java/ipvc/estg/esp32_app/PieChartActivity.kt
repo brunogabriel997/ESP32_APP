@@ -1,8 +1,8 @@
 package ipvc.estg.esp32_app
 
 
-import android.app.DatePickerDialog
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -48,12 +48,30 @@ class PieChartActivity : AppCompatActivity() {
         val day = c.get(Calendar.DAY_OF_MONTH)
         val hour = c.get(Calendar.HOUR_OF_DAY)
 
-        //Toast.makeText(this@PieChartActivity, "Data formatada " + day, Toast.LENGTH_LONG).show()
+       // Toast.makeText(this@PieChartActivity, "Data formatada " + day + " "+ month + " " + year , Toast.LENGTH_LONG).show()
 
         basicReadWrite(hour, day, month, year)
 
     }
 
+
+    fun meses_ano(meses: Int): String
+    {
+        if (meses == 0) return  "janeiro"
+        if (meses == 1) return  "fevereiro"
+        if (meses == 2) return  "março"
+        if (meses == 3) return  "abril"
+        if (meses == 4) return  "maio"
+        if (meses == 5) return  "junho"
+        if (meses == 6) return  "julho"
+        if (meses == 7) return  "agosto"
+        if (meses == 8) return  "setembro"
+        if (meses == 9) return  "outubro"
+        if (meses == 10) return  "novembro"
+        if (meses == 11) return  "dezembro"
+        else return "null"
+
+    }
 
     fun basicReadWrite(hora: Int, dia: Int, mes: Int, ano: Int){
         // [START write_message]
@@ -70,39 +88,213 @@ class PieChartActivity : AppCompatActivity() {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
 
-                var esquerda_final = 0
-                var direita_final = 0
+
                 val entries: ArrayList<PieEntry> = ArrayList()
 
-                val esquerda =
-                    dataSnapshot.child("ESP32_Version1/"+ ano +"/janeiro/dia_"+ dia + "/"+ hora + "h/esquerda").value.toString()
-                val direita =
-                        dataSnapshot.child("ESP32_Version1/"+ ano +"/janeiro/dia_"+ dia + "/"+ hora + "h/direita").value.toString()
+                if(data_grafico == 1) {
+                    var esquerda_final = 0
+                    var direita_final = 0
+                    var esquerda_final2 = 0.toBigDecimal()
+                    var direita_final2 = 0.toBigDecimal()
+                    val esquerda =
+                        dataSnapshot.child("ESP32_Version1/" + ano + "/" + meses_ano(mes)+ "/dia_" + dia + "/" + hora + "h/esquerda").value.toString()
+                    val direita =
+                        dataSnapshot.child("ESP32_Version1/" + ano + "/" + meses_ano(mes) + "/dia_" + dia + "/" + hora + "h/direita").value.toString()
 
-                if(esquerda != "null") {
-                    esquerda_final = esquerda.toInt()
+                    if (esquerda != "null") {
+                        esquerda_final = esquerda.toInt()
+                    }
+
+                    if (direita != "null") {
+                        direita_final = direita.toInt()
+                    }
+
+                    //Converter para percentagem
+
+                    var total =  esquerda_final + direita_final
+                    //Toast.makeText(applicationContext, total.toString(), Toast.LENGTH_LONG).show()
+                    if(total!=0) {
+                        esquerda_final2 = ((esquerda_final * 100) / total).toBigDecimal()
+                        direita_final2 = ((direita_final * 100) / total).toBigDecimal()
+                    }
+                    
+
+
+                    //Toast.makeText(applicationContext, direita_final.toString() + " " + esquerda_final.toString(), Toast.LENGTH_LONG).show()
+
+                    entries.add(PieEntry(esquerda_final.toFloat(), "Esquerda: "+ esquerda_final2 +"%"))
+                    entries.add(PieEntry(direita_final.toFloat(), "Direita: "+ direita_final2 +"%"))
+
+
+                    /////////////////////////////////////////////////////////////////////////
+                    val piedataset = PieDataSet(entries, " -> Direções")
+                    piedataset.setColors(*ColorTemplate.COLORFUL_COLORS)
+                    piedataset.setValueTextColor(Color.BLACK)
+                    piedataset.setValueTextSize(16f)
+
+                    val pieData = PieData(piedataset) as PieData
+                    pieChart.setData(pieData)
+                    pieChart.getDescription().setEnabled(false)
+                    pieChart.setCenterText("Hora Atual")
+                    pieChart.animate()
+                    /////////////////////////////////////////////////////////////////////////
+
                 }
 
-                if (direita != "null") {
-                    direita_final = direita.toInt()
+
+                if(data_grafico == 2) {
+
+                    var aux_esquerda = 0
+                    var aux_direita = 0
+
+
+                    for (i in 0..23) {
+
+                        // Recebe os valores da Firebase ///////////////////////////////////////////////
+                        val esquerda =
+                            dataSnapshot.child("ESP32_Version1/"+ ano +"/janeiro/dia_"+ dia + "/"+ i + "h/esquerda").value.toString()
+                        val direita =
+                            dataSnapshot.child("ESP32_Version1/"+ ano +"/janeiro/dia_"+ dia + "/"+ i + "h/direita").value.toString()
+                        ////////////////////////////////////////////////////////////////////////////////
+
+                        // Soma os valores de pessoas que passarm em cada hora (descriminando o sentido)///
+                        if(esquerda != "null") {
+                            aux_esquerda += esquerda.toInt()
+                        }
+
+                        if (direita != "null") {
+                            aux_direita += direita.toInt()
+                        }
+                        ///////////////////////////////////////////////////////////////////////////////////
+
+                    }
+                    var total =  aux_direita + aux_esquerda
+                    var aux_direita2 = ((aux_direita * 100)/total).toBigDecimal()
+                    var aux_esquerda2 = ((aux_esquerda*100)/total).toBigDecimal()
+
+                    entries.add(PieEntry(aux_esquerda.toFloat(), "Esquerda: "+ aux_esquerda2 +"%"))
+                    entries.add(PieEntry(aux_direita.toFloat(), "Direita: "+ aux_direita2 +"%"))
+
+                    /////////////////////////////////////////////////////////////////////////
+                    val piedataset = PieDataSet(entries, " -> Direções")
+                    piedataset.setColors(*ColorTemplate.COLORFUL_COLORS)
+                    piedataset.setValueTextColor(Color.BLACK)
+                    piedataset.setValueTextSize(16f)
+
+                    val pieData = PieData(piedataset) as PieData
+                    pieChart.setData(pieData)
+                    pieChart.getDescription().setEnabled(false)
+                    pieChart.setCenterText(" Dia" + dia.toString())
+                    pieChart.animate()
+                    /////////////////////////////////////////////////////////////////////////
                 }
 
 
+                if (data_grafico == 3) {
+
+                    var aux_esquerda = 0
+                    var aux_direita = 0
+
+                    //Toast.makeText(applicationContext, meses_ano(mes) + "MES", Toast.LENGTH_SHORT).show()
+                    for (j in 1..31) {
+                        for (i in 0..23) {
+
+                            // Recebe os valores da Firebase ///////////////////////////////////////////////
+                            val esquerda =
+                                dataSnapshot.child("ESP32_Version1/" + ano + "/" + meses_ano(mes) + "/dia_" + j + "/" + i + "h/esquerda").value.toString()
+                            val direita =
+                                dataSnapshot.child("ESP32_Version1/" + ano + "/" + meses_ano(mes) + "/dia_" + j + "/" + i + "h/direita").value.toString()
+                            ////////////////////////////////////////////////////////////////////////////////
+
+                            // Soma os valores de pessoas que passarm em cada hora (descriminando o sentido)///
+                            if (esquerda != "null") {
+                                aux_esquerda += esquerda.toInt()
+                            }
+
+                            if (direita != "null") {
+                                aux_direita += direita.toInt()
+                            }
+                            ///////////////////////////////////////////////////////////////////////////////////
+
+                        }
+                    }
+                        val total =  aux_direita + aux_esquerda
+                        val aux_direita2 = ((aux_direita * 100)/total).toBigDecimal()
+                        val aux_esquerda2 = ((aux_esquerda*100)/total).toBigDecimal()
+
+                        entries.add(PieEntry(aux_esquerda.toFloat(), "Esquerda: "+ aux_esquerda2 +"%"))
+                        entries.add(PieEntry(aux_direita.toFloat(), "Direita: "+ aux_direita2 +"%"))
+
+                        /////////////////////////////////////////////////////////////////////////
+                        val piedataset = PieDataSet(entries, " -> Direções")
+                        piedataset.setColors(*ColorTemplate.COLORFUL_COLORS)
+                        piedataset.setValueTextColor(Color.BLACK)
+                        piedataset.setValueTextSize(16f)
+
+                        val pieData = PieData(piedataset) as PieData
+                        pieChart.setData(pieData)
+                        pieChart.getDescription().setEnabled(false)
+                        pieChart.setCenterText(meses_ano(mes))
+                        pieChart.animate()
+                        /////////////////////////////////////////////////////////////////////////
+
+                    }
 
 
-                entries.add(PieEntry(esquerda_final.toFloat(), "esquerda"))
-                entries.add(PieEntry(direita_final.toFloat(), "direita"))
+                if (data_grafico == 4) {
 
-                val piedataset = PieDataSet(entries, " -> Direções")
-                piedataset.setColors(*ColorTemplate.COLORFUL_COLORS)
-                piedataset.setValueTextColor(Color.BLACK)
-                piedataset.setValueTextSize(16f)
+                    var aux_esquerda = 0
+                    var aux_direita = 0
 
-                val pieData = PieData(piedataset) as PieData
-                pieChart.setData(pieData)
-                pieChart.getDescription().setEnabled(false)
-                pieChart.setCenterText(hora.toString() + " Horas")
-                pieChart.animate()
+
+                 for( k in 0..11) {
+                     for (j in 1..31) {
+                         for (i in 0..23) {
+
+                             // Recebe os valores da Firebase ///////////////////////////////////////////////
+                             val esquerda =
+                                 dataSnapshot.child("ESP32_Version1/" + ano + "/" + meses_ano(k) + "/dia_" + j + "/" + i + "h/esquerda").value.toString()
+                             val direita =
+                                 dataSnapshot.child("ESP32_Version1/" + ano + "/" + meses_ano(k) + "/dia_" + j + "/" + i + "h/direita").value.toString()
+                             ////////////////////////////////////////////////////////////////////////////////
+
+                             // Soma os valores de pessoas que passarm em cada hora (descriminando o sentido)///
+                             if (esquerda != "null") {
+                                 aux_esquerda += esquerda.toInt()
+                             }
+
+                             if (direita != "null") {
+                                 aux_direita += direita.toInt()
+                             }
+                             ///////////////////////////////////////////////////////////////////////////////////
+
+                         }
+                     }
+                 }
+                    val total =  aux_direita + aux_esquerda
+                    val aux_direita2 = ((aux_direita * 100)/total).toBigDecimal()
+                    val aux_esquerda2 = ((aux_esquerda*100)/total).toBigDecimal()
+
+                    entries.add(PieEntry(aux_esquerda.toFloat(), "Esquerda: "+ aux_esquerda2 +"%"))
+                    entries.add(PieEntry(aux_direita.toFloat(), "Direita: "+ aux_direita2 +"%"))
+
+
+                    /////////////////////////////////////////////////////////////////////////
+                    val piedataset = PieDataSet(entries, " -> Direções")
+                    piedataset.setColors(*ColorTemplate.COLORFUL_COLORS)
+                    piedataset.setValueTextColor(Color.BLACK)
+                    piedataset.setValueTextSize(16f)
+
+                    val pieData = PieData(piedataset) as PieData
+                    pieChart.setData(pieData)
+                    pieChart.getDescription().setEnabled(false)
+                    pieChart.setCenterText(ano.toString())
+                    pieChart.animate()
+                    /////////////////////////////////////////////////////////////////////////
+
+                }
+
+
 
             }
 
@@ -125,25 +317,39 @@ class PieChartActivity : AppCompatActivity() {
         return when (item.itemId) {
 
             R.id.hora -> {
+                data_grafico = 1
 
+                val intent = Intent(this@PieChartActivity, PieChartActivity::class.java)
+                finish()
+                startActivity(intent)
                 true
             }
 
             R.id.dia -> {
+                data_grafico = 2
 
-
+                val intent = Intent(this@PieChartActivity, PieChartActivity::class.java)
+                finish()
+                startActivity(intent)
+                //Toast.makeText(applicationContext, "Funciona ", Toast.LENGTH_SHORT).show()
                 true
             }
 
             R.id.mes -> {
+                data_grafico = 3
 
-
+                val intent = Intent(this@PieChartActivity, PieChartActivity::class.java)
+                finish()
+                startActivity(intent)
                 true
             }
 
             R.id.ano -> {
+                data_grafico = 4
 
-
+                val intent = Intent(this@PieChartActivity, PieChartActivity::class.java)
+                finish()
+                startActivity(intent)
                 true
             }
 
