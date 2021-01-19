@@ -48,13 +48,13 @@ class PieChartActivity : AppCompatActivity() {
         val dataFormatada_ano = formataData_ano.format(data)
 
 
-        basicReadWrite(dataFormatada_hora, dataFormatada_dia.toInt(), dataFormatada_ano.toInt())
+        basicReadWrite(dataFormatada_hora.toInt(), dataFormatada_dia.toInt(), dataFormatada_ano.toInt())
 
 
     }
 
 
-    fun basicReadWrite(dataFormatada_hora: String, dataFormatada_dia: Int, dataFormatada_ano: Int){
+    fun basicReadWrite(dataFormatada_hora: Int, dataFormatada_dia: Int, dataFormatada_ano: Int){
         // [START write_message]
         // Write a message to the database
         val myRef = FirebaseDatabase.getInstance().getReference()
@@ -84,11 +84,11 @@ class PieChartActivity : AppCompatActivity() {
                         dataSnapshot.child("ESP32_Version1/"+ dataFormatada_ano +"/janeiro/dia_"+ dataFormatada_dia + "/"+ dataFormatada_hora + "h/direita").value.toString()
 
                 if(esquerda != "null") {
-                    esquerda_final += esquerda.toInt()
+                    esquerda_final = esquerda.toInt()
                 }
 
                 if (direita != "null") {
-                    direita_final += direita.toInt()
+                    direita_final = direita.toInt()
                 }
 
 
@@ -105,7 +105,7 @@ class PieChartActivity : AppCompatActivity() {
                 val pieData = PieData(piedataset) as PieData
                 pieChart.setData(pieData)
                 pieChart.getDescription().setEnabled(false)
-                pieChart.setCenterText(dataFormatada_hora + " Horas")
+                pieChart.setCenterText(dataFormatada_hora.toString() + " Horas")
                 pieChart.animate()
 
             }
