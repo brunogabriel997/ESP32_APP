@@ -16,12 +16,13 @@ class Planta1 : AppCompatActivity() {
         //setSupportActionBar(findViewById(R.id.toolbar))
 
         findViewById<Button>(R.id.button).setOnClickListener { view ->
-            val intent = Intent(this@Planta1, Chart::class.java)
+            val intent = Intent(this@Planta1, chartSelection::class.java)
             startActivity(intent)
         }
 
         findViewById<Button>(R.id.button2).setOnClickListener { view ->
             val intent = Intent(this@Planta1, menuactivity::class.java)
+            finish()
             startActivity(intent)
         }
     }

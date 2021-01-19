@@ -24,7 +24,6 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "KotlinActivity"
-        var values = String()
     }
 
 
@@ -71,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
         bardataset.setColors(ColorTemplate.COLORFUL_COLORS)
         barChart.animateY(3000)
-*/
+
 
 
         val button_atual = findViewById<Button>(R.id.botao)
@@ -80,15 +79,56 @@ class MainActivity : AppCompatActivity() {
             //System.out.println("Data formatada " + dataFormatada );
             //Toast.makeText(this@MainActivity, "Data formatada " + dataFormatada_ano, Toast.LENGTH_LONG).show()
 
-
-
         }
-        basicReadWrite(dataFormatada_hora, dataFormatada_dia.toInt(), dataFormatada_ano.toInt())
+
+        ///////////////////
+            <Button
+        android:id="@+id/botao"
+        android:layout_width="139dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="45dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_toStartOf="@+id/button2"
+        android:layout_toLeftOf="@+id/button2"
+        android:background="#000000"
+        android:fontFamily="@font/orbitron_bold"
+        android:text="hora atual"
+        app:backgroundTint="#000000" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#040202"
+        android:fontFamily="@font/orbitron_bold"
+        android:text="Voltar"
+        app:backgroundTint="#000000" />
+
+
+        //////////////////
+
+
+
+
+*/
+        //basicReadWrite(dataFormatada_hora, dataFormatada_dia.toInt(), dataFormatada_ano.toInt())
 
 
     }
 
-
+/*
     fun basicReadWrite(dataFormatada_hora: String, dataFormatada_dia: Int, dataFormatada_ano: Int){
         // [START write_message]
         // Write a message to the database
@@ -112,9 +152,9 @@ class MainActivity : AppCompatActivity() {
                 val entries: ArrayList<BarEntry> = ArrayList()
                 val labels = ArrayList<String>()
                 val bardataset = BarDataSet(entries, "Cells")
-                for (i in 23 downTo 0) {
+                for (i in 0..23) {
                     val value =
-                            dataSnapshot.child("ESP32_Version1/"+ dataFormatada_ano +"/janeiro/dia_7/" + i + "h").value.toString()
+                            dataSnapshot.child("ESP32_Version1/"+ dataFormatada_ano +"/janeiro/dia_"+ dataFormatada_dia + "/"+ i + "h").value.toString()
 
                     if(value == "null") {
                         value2 = 0
@@ -130,10 +170,10 @@ class MainActivity : AppCompatActivity() {
                 val data1 = BarData(labels, bardataset)
                 barChart.data = data1 // set the data and list of labels into chart
 
-                barChart.setDescription("Set Bar Chart Description Here") // set the description
+                barChart.setDescription("Fluxo de Pessoas Diario") // set the description
 
                 bardataset.setColors(ColorTemplate.COLORFUL_COLORS)
-                barChart.animateY(3000)
+                barChart.animateY(0)
 
 
 
@@ -151,4 +191,5 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+    */
 }

@@ -30,7 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".BarChartActivity"/>
+        <activity android:name=".PieChartActivity"/>
+        <activity android:name=".chartSelection" >
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

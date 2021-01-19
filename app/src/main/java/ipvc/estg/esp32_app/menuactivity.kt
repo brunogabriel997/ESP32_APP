@@ -50,6 +50,7 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
 
             findViewById<Button>(R.id.button2).setOnClickListener { view ->
                 val intent = Intent(this@menuactivity, menuactivity::class.java)
+                finish()
                 startActivity(intent)
             }
 
