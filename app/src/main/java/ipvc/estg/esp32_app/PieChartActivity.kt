@@ -4,11 +4,17 @@ package ipvc.estg.esp32_app
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.webkit.WebView
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.*
@@ -47,10 +53,7 @@ class PieChartActivity : AppCompatActivity() {
         val dataFormatada_mes = formataData_mes.format(data)
         val dataFormatada_ano = formataData_ano.format(data)
 
-
         basicReadWrite(dataFormatada_hora.toInt(), dataFormatada_dia.toInt(), dataFormatada_ano.toInt())
-
-
     }
 
 
@@ -72,7 +75,6 @@ class PieChartActivity : AppCompatActivity() {
                 val value =
                         dataSnapshot.child("ESP32_Version1/"+ dataFormatada_ano +"/janeiro/dia_"+dataFormatada_dia+"/" + dataFormatada_hora + "h").value.toString()
                 */
-
 
                 var esquerda_final = 0
                 var direita_final = 0
@@ -117,4 +119,45 @@ class PieChartActivity : AppCompatActivity() {
         })
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+
+            R.id.hora -> {
+
+                true
+            }
+
+            R.id.dia -> {
+
+
+                true
+            }
+
+            R.id.mes -> {
+
+
+                true
+            }
+
+            R.id.ano -> {
+
+
+                true
+            }
+
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
+
 }

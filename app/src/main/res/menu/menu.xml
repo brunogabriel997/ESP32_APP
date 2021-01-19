@@ -3,20 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_call"
-        android:title="call"
-        app:showAsAction="always">
+        android:id="@+id/hora"
+        android:title="Hora"
+        app:showAsAction="never">
     </item>
 
     <item
-        android:id="@+id/menu_phone"
-        android:title="Phone"
-        app:showAsAction="always">
+        android:id="@+id/dia"
+        android:title="Dia"
+        app:showAsAction="never">
     </item>
     <item
-        android:id="@+id/menu_message"
-        android:title="Message"
-        app:showAsAction="always">
+        android:id="@+id/mes"
+        android:title="Mês"
+        app:showAsAction="never">
+    </item>
+
+    <item
+        android:id="@+id/ano"
+        android:title="Ano"
+        app:showAsAction="never">
     </item>
 
 </menu>
