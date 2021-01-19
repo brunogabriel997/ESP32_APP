@@ -14,4 +14,5 @@
     <string name="title_activity_chart" translatable="false">Chart</string>
     <string name="bar_chart">Bar Chart</string>
     <string name="pie_chart">Pie Chart</string>
+    <string name="pick_date">Pick Date</string>
 </resources>

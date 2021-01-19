@@ -3,4 +3,5 @@
     <string name="app_name">ESP32_APP</string>
     <string name="bar_chart">Gráfico de Barras</string>
     <string name="pie_chart">Gráfico de Pizza</string>
+    <string name="pick_date">Escolher Data</string>
 </resources>

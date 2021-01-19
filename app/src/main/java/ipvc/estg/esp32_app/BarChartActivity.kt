@@ -111,7 +111,7 @@ class BarChartActivity : AppCompatActivity() {
                 val barDataSet = BarDataSet(entries, " -> Pessoas")
                 barDataSet.setColors(*ColorTemplate.COLORFUL_COLORS)    // Fornece as barras cores aleatorias
                 barDataSet.setValueTextColor(Color.BLACK)               // O texto é escrito em preto
-
+                barDataSet.setValueTextSize(10f)
 
                 val barData = BarData(barDataSet)
 

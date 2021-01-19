@@ -1,12 +1,15 @@
 package ipvc.estg.esp32_app
 
 
+import android.app.DatePickerDialog
+import android.app.Dialog
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.widget.Button
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.github.mikephil.charting.charts.BarChart
@@ -24,6 +27,7 @@ import java.util.*
 class PieChartActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "KotlinActivity"
+        var data_grafico = 1
     }
 
 
@@ -31,30 +35,21 @@ class PieChartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pie_chart)
 
+        // Use the current date as the default date in the picker
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+        val hour = c.get(Calendar.HOUR_OF_DAY)
 
-        //val barChart = findViewById<View>(R.id.barchart) as BarChart
+        //Toast.makeText(this@PieChartActivity, "Data formatada " + day, Toast.LENGTH_LONG).show()
 
-        // data atual
-        val formataData_ano = SimpleDateFormat("yyyy")
-        val formataData_mes = SimpleDateFormat("MM")
-        val formataData_dia = SimpleDateFormat("dd")
-        // hora atual
-        val formataData_hora = SimpleDateFormat("HH")
-
-        val data = Date()
-        val dataFormatada_hora = formataData_hora.format(data)
-        val dataFormatada_dia = formataData_dia.format(data)
-        val dataFormatada_mes = formataData_mes.format(data)
-        val dataFormatada_ano = formataData_ano.format(data)
-
-
-        basicReadWrite(dataFormatada_hora.toInt(), dataFormatada_dia.toInt(), dataFormatada_ano.toInt())
-
+        basicReadWrite(hour, day, month, year)
 
     }
 
 
-    fun basicReadWrite(dataFormatada_hora: Int, dataFormatada_dia: Int, dataFormatada_ano: Int){
+    fun basicReadWrite(hora: Int, dia: Int, mes: Int, ano: Int){
         // [START write_message]
         // Write a message to the database
         val myRef = FirebaseDatabase.getInstance().getReference()
@@ -68,20 +63,15 @@ class PieChartActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                /*
-                val value =
-                        dataSnapshot.child("ESP32_Version1/"+ dataFormatada_ano +"/janeiro/dia_"+dataFormatada_dia+"/" + dataFormatada_hora + "h").value.toString()
-                */
-
 
                 var esquerda_final = 0
                 var direita_final = 0
                 val entries: ArrayList<PieEntry> = ArrayList()
 
                 val esquerda =
-                    dataSnapshot.child("ESP32_Version1/"+ dataFormatada_ano +"/janeiro/dia_"+ dataFormatada_dia + "/"+ dataFormatada_hora + "h/esquerda").value.toString()
+                    dataSnapshot.child("ESP32_Version1/"+ ano +"/janeiro/dia_"+ dia + "/"+ hora + "h/esquerda").value.toString()
                 val direita =
-                        dataSnapshot.child("ESP32_Version1/"+ dataFormatada_ano +"/janeiro/dia_"+ dataFormatada_dia + "/"+ dataFormatada_hora + "h/direita").value.toString()
+                        dataSnapshot.child("ESP32_Version1/"+ ano +"/janeiro/dia_"+ dia + "/"+ hora + "h/direita").value.toString()
 
                 if(esquerda != "null") {
                     esquerda_final = esquerda.toInt()
@@ -105,7 +95,7 @@ class PieChartActivity : AppCompatActivity() {
                 val pieData = PieData(piedataset) as PieData
                 pieChart.setData(pieData)
                 pieChart.getDescription().setEnabled(false)
-                pieChart.setCenterText(dataFormatada_hora.toString() + " Horas")
+                pieChart.setCenterText(hora.toString() + " Horas")
                 pieChart.animate()
 
             }
