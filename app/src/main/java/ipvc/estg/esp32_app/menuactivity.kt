@@ -6,6 +6,10 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
+import com.sun.tools.doclets.internal.toolkit.util.DocPath.parent
+
+
+
 
 
 class menuactivity : AppCompatActivity(), OnItemSelectedListener {
@@ -59,26 +63,29 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
     }
 
 
-
     override fun onItemSelected(arg0: AdapterView<*>?, arg1: View, position: Int, id: Long) {
         //Toast.makeText(applicationContext, "Selected User: " + floors[position], Toast.LENGTH_SHORT).show()
 
-            if(floors[position] == "1 Andar" ){
-                val intent = Intent(this@menuactivity, Planta1::class.java)
-                startActivity(intent)
-            }
+        if(R.id.spinner1 == 1)
+        {
+            val intent = Intent(this@menuactivity, Planta1::class.java)
+            startActivity(intent)
+        }
+        if(R.id.spinner2 == 1)
+        {
+            Toast.makeText(applicationContext, "Entrou no 1 andar", Toast.LENGTH_LONG).show()
+        }
 
     }
 
-    override fun onRestart() {
+    override fun onRestart()
+    {
         super.onRestart()
         //When BACK BUTTON is pressed, the activity on the stack is restarted
         //Do what you want on the refresh procedure here
         val intent = Intent(this@menuactivity, menuactivity::class.java)
         startActivity(intent)
     }
-
-
 
 
     override fun onNothingSelected(arg0: AdapterView<*>?) {

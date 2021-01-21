@@ -149,7 +149,8 @@ class PieChartActivity : AppCompatActivity() {
 
                     var aux_esquerda = 0
                     var aux_direita = 0
-
+                    var aux_direita2 = 0
+                    var aux_esquerda2 = 0
 
                     for (i in 0..23) {
 
@@ -175,8 +176,8 @@ class PieChartActivity : AppCompatActivity() {
 
                     if(total!=0)    //Caso esse dia não tenha nenhum valor, para a conversão para percentagem nao seja divida por zero!
                     {
-                        var aux_direita2 = ((aux_direita * 100)/total).toBigDecimal()
-                        var aux_esquerda2 = ((aux_esquerda*100)/total).toBigDecimal()
+                        aux_direita2 = ((aux_direita * 100)/total)
+                        aux_esquerda2 = ((aux_esquerda*100)/total)
                     }
 
                     entries.add(PieEntry(aux_esquerda.toFloat(), "Esquerda: "+ aux_esquerda2 +"%"))
@@ -201,6 +202,8 @@ class PieChartActivity : AppCompatActivity() {
 
                     var aux_esquerda = 0
                     var aux_direita = 0
+                    var aux_direita2 = 0
+                    var aux_esquerda2 = 0
 
                     //Toast.makeText(applicationContext, meses_ano(mes) + "MES", Toast.LENGTH_SHORT).show()
                     for (j in 1..31) {
@@ -222,7 +225,6 @@ class PieChartActivity : AppCompatActivity() {
                                 aux_direita += direita.toInt()
                             }
                             ///////////////////////////////////////////////////////////////////////////////////
-
                         }
                     }
 
@@ -230,8 +232,8 @@ class PieChartActivity : AppCompatActivity() {
 
                     if(total!=0)    //Caso esse dia não tenha nenhum valor, para a conversão para percentagem nao seja divida por zero!
                     {
-                        val aux_direita2 = ((aux_direita * 100) / total).toBigDecimal()
-                        val aux_esquerda2 = ((aux_esquerda * 100) / total).toBigDecimal()
+                         aux_direita2 = ((aux_direita * 100) / total)
+                         aux_esquerda2 = ((aux_esquerda * 100) / total)
                     }
                         entries.add(PieEntry(aux_esquerda.toFloat(), "Esquerda: "+ aux_esquerda2 +"%"))
                         entries.add(PieEntry(aux_direita.toFloat(), "Direita: "+ aux_direita2 +"%"))
@@ -256,7 +258,8 @@ class PieChartActivity : AppCompatActivity() {
 
                     var aux_esquerda = 0
                     var aux_direita = 0
-
+                    var aux_direita2 = 0
+                    var aux_esquerda2 = 0
 
                  for( k in 0..11) {
                      for (j in 1..31) {
@@ -284,10 +287,11 @@ class PieChartActivity : AppCompatActivity() {
                  }
 
                     val total = aux_direita + aux_esquerda
+
                     if(total!=0)    //Caso esse dia não tenha nenhum valor, para a conversão para percentagem nao seja divida por zero!
                     {
-                        val aux_direita2 = ((aux_direita * 100) / total).toBigDecimal()
-                        val aux_esquerda2 = ((aux_esquerda * 100) / total).toBigDecimal()
+                         aux_direita2 = ((aux_direita * 100) / total)
+                         aux_esquerda2 = ((aux_esquerda * 100) / total)
                     }
                     entries.add(PieEntry(aux_esquerda.toFloat(), "Esquerda: "+ aux_esquerda2 +"%"))
                     entries.add(PieEntry(aux_direita.toFloat(), "Direita: "+ aux_direita2 +"%"))
@@ -301,17 +305,15 @@ class PieChartActivity : AppCompatActivity() {
 
                     val pieData = PieData(piedataset) as PieData
                     pieChart.setData(pieData)
-                    pieChart.getDescription().setEnabled(false)
+                    //pieChart.getDescription().setEnabled(true)
+                    pieChart.getDescription().setText("Direção do movimento predominante no ano atual");
+                    pieChart.setCenterTextSize(40F)
                     pieChart.setCenterText(ano.toString())
                     pieChart.animate()
                     /////////////////////////////////////////////////////////////////////////
 
                 }
-
-
-
             }
-
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException())
