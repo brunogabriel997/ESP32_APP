@@ -28,12 +28,13 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="21dp"
-        android:layout_height="31dp"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="350dp"
+        android:layout_width="25dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="290dp"
+        android:layout_marginTop="450dp"
         app:backgroundTint="#EF0B0B"
         app:cornerRadius="1000dp" />
+
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"

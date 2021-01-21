@@ -5,25 +5,58 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient">
 
+    <Button
+        android:id="@+id/enter_pie_chart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/buttonshape"
+        android:text="@string/pie_chart"
+        app:backgroundTint="#FFFFFF" />
 
     <Button
         android:id="@+id/enter_bar_chart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/enter_pie_chart"
-        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/buttonshape"
-        android:text="@string/bar_chart" />
+        android:text="@string/bar_chart"
+        app:backgroundTint="#FFFFFF" />
 
-    <Button
-        android:id="@+id/enter_pie_chart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/buttonshape"
-        android:text="@string/pie_chart"/>
-
-
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="384dp"
+        android:layout_height="64dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="362dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        android:layout_marginBottom="336dp"
+        android:fontFamily="@font/orbitron"
+        android:gravity="center_horizontal"
+        android:text="Escolha qual o gráfico que pretende visualizar!"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20dp" />
 
 
 </RelativeLayout>

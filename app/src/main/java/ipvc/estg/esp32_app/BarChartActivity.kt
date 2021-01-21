@@ -171,15 +171,14 @@ class BarChartActivity : AppCompatActivity() {
 
                 }
 
-
                 if(data_grafico == 3)
                 {
                     var aux_esquerda = 0
                     var aux_direita = 0
                     var total = 0
-                    for (k in 0..11) {
-                        for (j in 1..31) {
-                            for (i in 0..23) {
+                    for (k in 0..11) {    //Ciclo para o ano
+                        for (j in 1..31) {  //Clico para um mês
+                            for (i in 0..23) {  //Ciclo para um dia
 
                                 // Recebe os valores da Firebase ///////////////////////////////////////////////
                                 val esquerda =
@@ -217,8 +216,6 @@ class BarChartActivity : AppCompatActivity() {
                         barChart.setData(barData)
                         barChart.getDescription().setText("Meses / Nº Pessoas");
                         barChart.animateY(0)
-
-
 
                 }
             }
@@ -272,7 +269,6 @@ class BarChartActivity : AppCompatActivity() {
 
     }
 
-
     fun meses_ano(meses: Int): String
     {
         if (meses == 0) return  "janeiro"
@@ -290,12 +286,4 @@ class BarChartActivity : AppCompatActivity() {
         else return "null"
 
     }
-
-
-
-
-
-
-
-
 }

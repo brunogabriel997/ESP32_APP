@@ -112,8 +112,11 @@ class PieChartActivity : AppCompatActivity() {
                     //Converter para percentagem
 
                     var total =  esquerda_final + direita_final
+
                     //Toast.makeText(applicationContext, total.toString(), Toast.LENGTH_LONG).show()
-                    if(total!=0) {
+
+                    if(total!=0)
+                    {
                         esquerda_final2 = ((esquerda_final * 100) / total).toBigDecimal()
                         direita_final2 = ((direita_final * 100) / total).toBigDecimal()
                     }
@@ -169,8 +172,12 @@ class PieChartActivity : AppCompatActivity() {
 
                     }
                     var total =  aux_direita + aux_esquerda
-                    var aux_direita2 = ((aux_direita * 100)/total).toBigDecimal()
-                    var aux_esquerda2 = ((aux_esquerda*100)/total).toBigDecimal()
+
+                    if(total!=0)    //Caso esse dia não tenha nenhum valor, para a conversão para percentagem nao seja divida por zero!
+                    {
+                        var aux_direita2 = ((aux_direita * 100)/total).toBigDecimal()
+                        var aux_esquerda2 = ((aux_esquerda*100)/total).toBigDecimal()
+                    }
 
                     entries.add(PieEntry(aux_esquerda.toFloat(), "Esquerda: "+ aux_esquerda2 +"%"))
                     entries.add(PieEntry(aux_direita.toFloat(), "Direita: "+ aux_direita2 +"%"))
@@ -184,7 +191,7 @@ class PieChartActivity : AppCompatActivity() {
                     val pieData = PieData(piedataset) as PieData
                     pieChart.setData(pieData)
                     pieChart.getDescription().setEnabled(false)
-                    pieChart.setCenterText(" Dia" + dia.toString())
+                    pieChart.setCenterText(" Dia " + dia.toString())
                     pieChart.animate()
                     /////////////////////////////////////////////////////////////////////////
                 }
@@ -218,10 +225,14 @@ class PieChartActivity : AppCompatActivity() {
 
                         }
                     }
-                        val total =  aux_direita + aux_esquerda
-                        val aux_direita2 = ((aux_direita * 100)/total).toBigDecimal()
-                        val aux_esquerda2 = ((aux_esquerda*100)/total).toBigDecimal()
 
+                    val total = aux_direita + aux_esquerda
+
+                    if(total!=0)    //Caso esse dia não tenha nenhum valor, para a conversão para percentagem nao seja divida por zero!
+                    {
+                        val aux_direita2 = ((aux_direita * 100) / total).toBigDecimal()
+                        val aux_esquerda2 = ((aux_esquerda * 100) / total).toBigDecimal()
+                    }
                         entries.add(PieEntry(aux_esquerda.toFloat(), "Esquerda: "+ aux_esquerda2 +"%"))
                         entries.add(PieEntry(aux_direita.toFloat(), "Direita: "+ aux_direita2 +"%"))
 
@@ -271,10 +282,13 @@ class PieChartActivity : AppCompatActivity() {
                          }
                      }
                  }
-                    val total =  aux_direita + aux_esquerda
-                    val aux_direita2 = ((aux_direita * 100)/total).toBigDecimal()
-                    val aux_esquerda2 = ((aux_esquerda*100)/total).toBigDecimal()
 
+                    val total = aux_direita + aux_esquerda
+                    if(total!=0)    //Caso esse dia não tenha nenhum valor, para a conversão para percentagem nao seja divida por zero!
+                    {
+                        val aux_direita2 = ((aux_direita * 100) / total).toBigDecimal()
+                        val aux_esquerda2 = ((aux_esquerda * 100) / total).toBigDecimal()
+                    }
                     entries.add(PieEntry(aux_esquerda.toFloat(), "Esquerda: "+ aux_esquerda2 +"%"))
                     entries.add(PieEntry(aux_direita.toFloat(), "Direita: "+ aux_direita2 +"%"))
 
