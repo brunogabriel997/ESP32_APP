@@ -66,15 +66,12 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
     override fun onItemSelected(arg0: AdapterView<*>?, arg1: View, position: Int, id: Long) {
         //Toast.makeText(applicationContext, "Selected User: " + floors[position], Toast.LENGTH_SHORT).show()
 
-        if(R.id.spinner1 == 1)
+        if(floors[position] ==  "1 Andar")
         {
             val intent = Intent(this@menuactivity, Planta1::class.java)
             startActivity(intent)
         }
-        if(R.id.spinner2 == 1)
-        {
-            Toast.makeText(applicationContext, "Entrou no 1 andar", Toast.LENGTH_LONG).show()
-        }
+
 
     }
 
