@@ -8,6 +8,13 @@
     tools:context="MainActivity"
     android:background="@drawable/gradient">
 
+    <Button
+        android:id="@+id/button_bar_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/Data"
+        android:layout_alignTop="@+id/barchart" />
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barchart"

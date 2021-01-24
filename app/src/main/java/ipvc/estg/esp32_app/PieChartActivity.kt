@@ -1,7 +1,9 @@
 package ipvc.estg.esp32_app
 
 
+import android.app.DatePickerDialog
 import android.app.Dialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -43,14 +45,36 @@ class PieChartActivity : AppCompatActivity() {
 
         // Use the current date as the default date in the picker
         val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val hour = c.get(Calendar.HOUR_OF_DAY)
+        var year1 = c.get(Calendar.YEAR)
+        var month1 = c.get(Calendar.MONTH)
+        var day1 = c.get(Calendar.DAY_OF_MONTH)
+        var hour1 = c.get(Calendar.HOUR_OF_DAY)
 
-       // Toast.makeText(this@PieChartActivity, "Data formatada " + day + " "+ month + " " + year , Toast.LENGTH_LONG).show()
+        val button_pie_data = findViewById<Button>(R.id.button_pie_data)
+        button_pie_data.setOnClickListener {
+            val datePicker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, day ->
+                //Toast.makeText(this@PieChartActivity, "Data formatada " + day + " "+ month + " " + year , Toast.LENGTH_LONG).show()
+                year1 = year
+                month1 = month
+                day1 = day
+            },
+                    c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH))
+           datePicker.show()
 
-        basicReadWrite(hour, day, month, year)
+            val timePicker = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                hour1 = hourOfDay
+            },
+                    c.get(Calendar.HOUR_OF_DAY),c.get(Calendar.MINUTE),true)
+            timePicker.show()
+
+            Toast.makeText(this@PieChartActivity, "Data formatada " + day1 + " "+ month1 + " " + year1 + " " + hour1 , Toast.LENGTH_LONG).show()
+            basicReadWrite(hour1, day1, month1, year1)      // Utiliza a data atual para falar com  a firebase
+        }
+
+
+        //Toast.makeText(this@PieChartActivity, "Data formatada " + day1 + " "+ month1 + " " + year1 + " " + hour1 , Toast.LENGTH_LONG).show()
+
+        basicReadWrite(hour1, day1, month1, year1)      // Utiliza a data atual para falar com  a firebase
 
     }
 
@@ -156,9 +180,9 @@ class PieChartActivity : AppCompatActivity() {
 
                         // Recebe os valores da Firebase ///////////////////////////////////////////////
                         val esquerda =
-                            dataSnapshot.child("ESP32_Version1/"+ ano +"/janeiro/dia_"+ dia + "/"+ i + "h/esquerda").value.toString()
+                            dataSnapshot.child("ESP32_Version1/"+ ano +"/"+ meses_ano(mes)+"/dia_"+ dia + "/"+ i + "h/esquerda").value.toString()
                         val direita =
-                            dataSnapshot.child("ESP32_Version1/"+ ano +"/janeiro/dia_"+ dia + "/"+ i + "h/direita").value.toString()
+                            dataSnapshot.child("ESP32_Version1/"+ ano +"/"+ meses_ano(mes)+"/dia_"+ dia + "/"+ i + "h/direita").value.toString()
                         ////////////////////////////////////////////////////////////////////////////////
 
                         // Soma os valores de pessoas que passarm em cada hora (descriminando o sentido)///

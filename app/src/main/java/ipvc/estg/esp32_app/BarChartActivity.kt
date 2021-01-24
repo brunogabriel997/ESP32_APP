@@ -1,6 +1,8 @@
 package ipvc.estg.esp32_app
 
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -40,20 +42,27 @@ class BarChartActivity : AppCompatActivity() {
 
         // Use the current date as the default date in the picker
         val c = Calendar.getInstance()
-        val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH)
-        val hour = c.get(Calendar.HOUR_OF_DAY)
+        //var year = c.get(Calendar.YEAR)
+        //var month = c.get(Calendar.MONTH)
+        //var day = c.get(Calendar.DAY_OF_MONTH)
 
-        // Toast.makeText(this@PieChartActivity, "Data formatada " + day + " "+ month + " " + year , Toast.LENGTH_LONG).show()
 
-        basicReadWrite(hour, day, month, year)
+        val button_bar_data = findViewById<Button>(R.id.button_bar_data)
+        button_bar_data.setOnClickListener {
+            val datePicker = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, month, day ->
+                //Toast.makeText(this@PieChartActivity, "Data formatada " + day + " "+ month + " " + year , Toast.LENGTH_LONG).show()
+                basicReadWrite(day, month, year)      // Utiliza a data atual para falar com  a firebase
+            },
+                    c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH))
+            datePicker.show()
+        }
 
+        //basicReadWrite(hour, day, month, year)
 
     }
 
 
-    fun basicReadWrite(hora: Int, dia: Int,mes: Int, ano: Int){
+    fun basicReadWrite(dia: Int,mes: Int, ano: Int){
         // [START write_message]
         // Write a message to the database
         val myRef = FirebaseDatabase.getInstance().getReference()
