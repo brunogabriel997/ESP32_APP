@@ -42,9 +42,9 @@ class BarChartActivity : AppCompatActivity() {
 
         // Use the current date as the default date in the picker
         val c = Calendar.getInstance()
-        //var year = c.get(Calendar.YEAR)
-        //var month = c.get(Calendar.MONTH)
-        //var day = c.get(Calendar.DAY_OF_MONTH)
+        var year = c.get(Calendar.YEAR)
+        var month = c.get(Calendar.MONTH)
+        var day = c.get(Calendar.DAY_OF_MONTH)
 
 
         val button_bar_data = findViewById<Button>(R.id.button_bar_data)
@@ -57,7 +57,7 @@ class BarChartActivity : AppCompatActivity() {
             datePicker.show()
         }
 
-        //basicReadWrite(hour, day, month, year)
+        basicReadWrite(day, month, year)
 
     }
 

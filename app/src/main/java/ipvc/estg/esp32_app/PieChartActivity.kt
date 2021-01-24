@@ -57,6 +57,7 @@ class PieChartActivity : AppCompatActivity() {
                 year1 = year
                 month1 = month
                 day1 = day
+                basicReadWrite(hour1, day1, month1, year1)      // Utiliza a data atual para falar com  a firebase
             },
                     c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH))
            datePicker.show()
@@ -68,7 +69,7 @@ class PieChartActivity : AppCompatActivity() {
             timePicker.show()
 
             Toast.makeText(this@PieChartActivity, "Data formatada " + day1 + " "+ month1 + " " + year1 + " " + hour1 , Toast.LENGTH_LONG).show()
-            basicReadWrite(hour1, day1, month1, year1)      // Utiliza a data atual para falar com  a firebase
+
         }
 
 
@@ -162,7 +163,7 @@ class PieChartActivity : AppCompatActivity() {
                     val pieData = PieData(piedataset) as PieData
                     pieChart.setData(pieData)
                     pieChart.getDescription().setEnabled(false)
-                    pieChart.setCenterText("Hora Atual")
+                    pieChart.setCenterText(hora.toString() +" Horas")
                     pieChart.animate()
                     /////////////////////////////////////////////////////////////////////////
 
