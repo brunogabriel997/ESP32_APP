@@ -16,10 +16,10 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
         arrayOf("","1 Andar", "2 Andar", "3 Andar")
 
     var floors2 =
-            arrayOf("","1 Andar", "2 Andar")
+            arrayOf(""," 1 Andar", " 2 Andar")
 
     var floors3 =
-            arrayOf("", "1 Andar", "2 Andar")
+            arrayOf("", "1 Andar ", "2 Andar ")
 
 
 
@@ -68,20 +68,10 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
         //Toast.makeText(applicationContext, "Selected User: " + floors[position], Toast.LENGTH_SHORT).show()
 
 
-        val id = spinner.getId();  //You can also use int id= view.getId();
-
-        if(id == R.id.spinner1)
-        {
             if (floors[position] == "1 Andar") {
                 val intent = Intent(this@menuactivity, Planta1::class.java)
                 startActivity(intent)
             }
-        }
-
-
-
-
-
     }
 
     override fun onRestart()
