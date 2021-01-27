@@ -68,22 +68,14 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
         //Toast.makeText(applicationContext, "Selected User: " + floors[position], Toast.LENGTH_SHORT).show()
 
             if (floors[position] == "1 Andar") {
+                Toast.makeText(this@menuactivity, floors[position], Toast.LENGTH_LONG).show()
                 val intent = Intent(this@menuactivity, Planta1::class.java)
+                finish()
                 startActivity(intent)
             }
 
 
     }
-
-    override fun onRestart()
-    {
-        super.onRestart()
-        //When BACK BUTTON is pressed, the activity on the stack is restarted
-        //Do what you want on the refresh procedure here
-        val intent = Intent(this@menuactivity, menuactivity::class.java)
-        startActivity(intent)
-    }
-
 
     override fun onNothingSelected(arg0: AdapterView<*>?) {
         // TODO - Custom Code

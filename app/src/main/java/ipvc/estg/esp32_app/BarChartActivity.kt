@@ -80,10 +80,7 @@ class BarChartActivity : AppCompatActivity() {
                         dataSnapshot.child("ESP32_Version1/"+ dataFormatada_ano +"/janeiro/dia_"+dataFormatada_dia+"/" + dataFormatada_hora + "h").value.toString()
                 */
 
-
-
                 val entries: ArrayList<BarEntry> = ArrayList()      // Entradas dos valores para a Bar Chart
-
 
 
                 if(data_grafico == 1) {

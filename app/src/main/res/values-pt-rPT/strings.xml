@@ -5,4 +5,6 @@
     <string name="pie_chart">Gráfico de Pizza</string>
     <string name="pick_date">Escolher Data</string>
     <string name="Data">Data</string>
+    <string name="select_graph">Escolha qual o gráfico que pretende visualizar!</string>
+    <string name="back">voltar</string>
 </resources>

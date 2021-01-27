@@ -16,4 +16,6 @@
     <string name="pie_chart">Pie Chart</string>
     <string name="pick_date">Pick Date</string>
     <string name="Data">Date</string>
+    <string name="select_graph">Choose which chart you want to view!</string>
+    <string name="back">back</string>
 </resources>

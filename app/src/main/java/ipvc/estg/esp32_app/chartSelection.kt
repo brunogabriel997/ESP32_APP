@@ -21,5 +21,9 @@ class chartSelection: AppCompatActivity() {
             val intent = Intent(this@chartSelection, PieChartActivity::class.java)
             startActivity(intent)
         }
+        val button_back = findViewById<Button>(R.id.button_back)
+        button_back.setOnClickListener {
+            finish()
+        }
     }
 }
