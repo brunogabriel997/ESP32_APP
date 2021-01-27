@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
-//import com.sun.tools.doclets.internal.toolkit.util.DocPath.parent
+
 
 
 class menuactivity : AppCompatActivity(), OnItemSelectedListener {
@@ -67,19 +67,10 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
     override fun onItemSelected(arg0: AdapterView<*>?, arg1: View, position: Int, id: Long) {
         //Toast.makeText(applicationContext, "Selected User: " + floors[position], Toast.LENGTH_SHORT).show()
 
-
-        val id = spinner.getId();  //You can also use int id= view.getId();
-
-        if(id == R.id.spinner1)
-        {
             if (floors[position] == "1 Andar") {
                 val intent = Intent(this@menuactivity, Planta1::class.java)
                 startActivity(intent)
             }
-        }
-
-
-
 
 
     }
