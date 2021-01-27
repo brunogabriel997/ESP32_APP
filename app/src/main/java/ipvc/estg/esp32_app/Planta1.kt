@@ -24,6 +24,4 @@ class Planta1 : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-
 }

@@ -13,10 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ESP32_APP">
         <activity
-            android:name=".Chart"
-            android:label="@string/title_activity_chart"
-            android:theme="@style/Theme.ESP32_APP.NoActionBar"></activity>
-        <activity
             android:name=".Planta1"
             android:label="@string/title_activity_planta1"
             android:theme="@style/Theme.ESP32_APP.NoActionBar" />
