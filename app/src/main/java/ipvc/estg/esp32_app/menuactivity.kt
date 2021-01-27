@@ -9,10 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 //import com.sun.tools.doclets.internal.toolkit.util.DocPath.parent
 
 
-
-
-
 class menuactivity : AppCompatActivity(), OnItemSelectedListener {
+
+
     var floors =
         arrayOf("","1 Andar", "2 Andar", "3 Andar")
 
@@ -21,6 +20,8 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
 
     var floors3 =
             arrayOf("", "1 Andar", "2 Andar")
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,11 +67,19 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
     override fun onItemSelected(arg0: AdapterView<*>?, arg1: View, position: Int, id: Long) {
         //Toast.makeText(applicationContext, "Selected User: " + floors[position], Toast.LENGTH_SHORT).show()
 
-        if(floors[position] ==  "1 Andar")
+
+        val id = spinner.getId();  //You can also use int id= view.getId();
+
+        if(id == R.id.spinner1)
         {
-            val intent = Intent(this@menuactivity, Planta1::class.java)
-            startActivity(intent)
+            if (floors[position] == "1 Andar") {
+                val intent = Intent(this@menuactivity, Planta1::class.java)
+                startActivity(intent)
+            }
         }
+
+
+
 
 
     }
