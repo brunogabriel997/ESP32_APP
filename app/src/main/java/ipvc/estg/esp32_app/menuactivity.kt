@@ -16,10 +16,10 @@ class menuactivity : AppCompatActivity(), OnItemSelectedListener {
         arrayOf("","1 Andar", "2 Andar", "3 Andar")
 
     var floors2 =
-            arrayOf("","1 Andar", "2 Andar")
+            arrayOf(""," 1 Andar", " 2 Andar")
 
     var floors3 =
-            arrayOf("", "1 Andar", "2 Andar")
+            arrayOf("", "1 Andar ", "2 Andar ")
 
 
 
